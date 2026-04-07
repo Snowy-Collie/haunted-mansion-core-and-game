@@ -10,18 +10,24 @@ def step(choice):
     for i in range(l):
         output+="{}: {}\n".format(i,text[choice][1][i][0])
     line=output.count("\n")+1
-    user=int(input(output+"\033[31mPlease enter your choice(0-{}): \033[34m".format(l-1)))
-    sys.stdout.write(f"\033[{line}A\r\033[J") 
-    sys.stdout.flush()
-    if user<0 or user>=l:
-        print("\033[31mInvalid choice, please try again.")
-        return step(choice)
-    else:
-        if text[choice][1][user][0] != "None":
-            print("\033[32m"+text[choice][1][user][0])
-            return step(text[choice][1][user][1])
+    try:
+        user=int(input(output+"\033[31mPlease enter your choice(0-{}): \033[34m".format(l-1)))
+        sys.stdout.write(f"\033[{line}A\r\033[J") 
+        sys.stdout.flush()
+        if user<0 or user>=l:
+            print("\033[31mInvalid choice, please try again.")
+            return step(choice)
         else:
-            return step(text[choice][1][user][1])
+            if text[choice][1][user][0] != "None":
+                print("\033[32m"+text[choice][1][user][0])
+                return step(text[choice][1][user][1])
+            else:
+                return step(text[choice][1][user][1])
+    except:
+        sys.stdout.write(f"\033[{line}A\r\033[J") 
+        sys.stdout.flush()
+        print("\033[31mInvalid input, please try again.")
+        return step(choice)
 
 def load():
     global text
