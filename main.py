@@ -1,5 +1,5 @@
 # Python3
-import sys, os, glob, json
+import sys, os, glob, json, urllib.request
 def step(choice):
     global text
     print("\033[36m"+text[choice][0])
@@ -25,6 +25,17 @@ def step(choice):
 
 def load():
     global text
+    if not os.path.exists("./games"):
+        os.makedirs("./games")
+    if not os.path.exists("./games/pilot_game_en.json"):
+        try:
+            req = urllib.request.Request("https://cshmg.acsstudio.site/games/pilot_game_en.json", headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'})
+            with urllib.request.urlopen(req) as response:
+                with open("./games/pilot_game_en.json", 'wb') as f:
+                    f.write(response.read())
+        except:
+            pass
+    
     filelst=glob.glob("./games/*.json")
     if filelst==[]:
         print("\033[31mNo game found, please put your game in the games folder.\033[0m")
