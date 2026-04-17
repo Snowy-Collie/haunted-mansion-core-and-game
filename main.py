@@ -64,7 +64,7 @@ def main():
     global text
     step(0)
 if __name__ == "__main__":
-    print("\033[31mPlease use \033[36mCOMMAND PROMPT\033[31m or \033[36mTERMINAL\033[31m to run this program for better experience.\n\033[34m",end="")
+    print("\033[31mPlease use \033[36mPowerShell (Windows 10)\033[31m or \033[36mTERMINAL (Windows 11, Unix, Linux)\033[31m to run this program for better experience.\n\033[34m",end="")
     input("Press Enter to continue, or Ctrl+C to exit.")
     sys.stdout.write(f"\033[{2}A\r\033[J") 
     sys.stdout.flush()
